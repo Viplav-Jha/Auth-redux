@@ -3,19 +3,26 @@ import logo from './logo.svg';
 import './App.css';
 import {auth, provider} from './firebase';
 import {useDispatch, useSelector} from 'react-redux';
-import {setActiveUser,setUserLogOutState,selectUserEmail,selectUserName} from './features/userSlice'
+import {setActiveUser,setUserLogoutState,selectUserName} from './features/userSlice'
 
 function App() {
   const dispatch= useDispatch()
   
-  const userName=useSelector(selectUserName)
+  const userName=   useSelector(selectUserName)
   const userEmail = useSelector(selectUserEmail)
 
   const handleSignIn=()=>{
-
+      auth.signinwithPopup(provider).then((result)=>{
+        dispatch(setActiveUser({
+          name:result.user.display,
+          email:result.user.email
+        }))
+      })
   } 
   const handleSignOut=()=>{
-    
+    auth.signOut().then(()=>{
+     dispatch(srtUserLogOutState())
+    }).catch((error)=>alert(err.message))
   } 
 
   return (
@@ -24,9 +31,9 @@ function App() {
         <img src={logo} className="App-logo" alt="logo" />
        {
          userName ? (
-           <button onclick={handleSignOut}>Sign Out</button>
+           <button onclick={handleSignOut}>SignOut</button>
          ):(
-           <button onClick={handleSignIn}>Sign In </button>
+           <button onClick={handleSignIn}>SignIn </button>
          )
        }
        
