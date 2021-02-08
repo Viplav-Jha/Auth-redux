@@ -3,7 +3,7 @@ import logo from './logo.svg';
 import './App.css';
 import {auth, provider} from './firebase';
 import {useDispatch, useSelector} from 'react-redux';
-import {setActiveUser,setUserLogoutState,selectUserName} from './features/userSlice'
+import {setActiveUser,setUserLogoutState,selectUserName,selectUserEmail} from './features/userSlice'
 
 function App() {
   const dispatch= useDispatch()
@@ -12,7 +12,7 @@ function App() {
   const userEmail = useSelector(selectUserEmail)
 
   const handleSignIn=()=>{
-      auth.signinwithPopup(provider).then((result)=>{
+      auth.signInWithPopup(provider).then((result)=>{
         dispatch(setActiveUser({
           name:result.user.display,
           email:result.user.email
@@ -21,8 +21,8 @@ function App() {
   } 
   const handleSignOut=()=>{
     auth.signOut().then(()=>{
-     dispatch(srtUserLogOutState())
-    }).catch((error)=>alert(err.message))
+     dispatch(setUserLogoutState())
+    }).catch((err)=>alert(err.message))
   } 
 
   return (
