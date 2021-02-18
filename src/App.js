@@ -3,7 +3,7 @@ import logo from './logo.svg';
 import './App.css';
 import {auth, provider} from './firebase';
 import {useDispatch, useSelector} from 'react-redux';
-import {setActiveUser,setUserLogoutState,selectUserName,selectUserEmail} from './features/userSlice'
+import {setActiveUser,setUserLogoutState,selectUserName,selectUserEmail} from './features/userSlice';
 
 function App() {
   const dispatch= useDispatch()
