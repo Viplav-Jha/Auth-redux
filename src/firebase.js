@@ -1,4 +1,4 @@
-import firebase from 'firebase';
+import firebase from 'firebase'; //initalise firebase by golbalally
 const firebaseConfig = {
     apiKey: "AIzaSyBxCAuR4OeDqdJO-kFwHCE-5_VyWnLBh38",
     authDomain: "auth-redux-c4966.firebaseapp.com",
