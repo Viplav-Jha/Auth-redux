@@ -5,7 +5,7 @@ import {auth, provider} from './firebase';
 import {useDispatch, useSelector} from 'react-redux';
 import {setActiveUser,setUserLogoutState,selectUserName,selectUserEmail} from './features/userSlice';
 
-function App() {
+ function App() {
   const dispatch= useDispatch()
   
   const userName=   useSelector(selectUserName)
@@ -20,11 +20,10 @@ function App() {
       })
   } 
   const handleSignOut=()=>{
-    auth.signOut().then(()=>{
+    auth.signOut().then(()=>{  
      dispatch(setUserLogoutState())
     }).catch((err)=>alert(err.message))
   } 
-
   return (
     <div className="App">
       <header className="App-header">
